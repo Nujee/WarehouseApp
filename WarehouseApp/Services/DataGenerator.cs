@@ -4,7 +4,7 @@ namespace WarehouseApp.Services
 {
     public static class DataGenerator
     {
-        private static Random _random = new Random();
+        private static Random _random = new();
 
         public static List<Pallet> GeneratePallets(int count)
         {
@@ -27,9 +27,9 @@ namespace WarehouseApp.Services
                     var box = new Box
                     {
                         Id = $"Box_{i}_{j}",
-                        Width = _random.Next(25, 100),
-                        Height = _random.Next(25, 100),
-                        Depth = _random.Next(25,100),
+                        Width = _random.Next(50, 120),
+                        Height = _random.Next(50, 120),
+                        Depth = _random.Next(50, 120),
                         Weight = _random.Next(1, 20),
 
                         ProductionDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-_random.Next(100,365))),
@@ -38,8 +38,7 @@ namespace WarehouseApp.Services
                             : null
                     };
 
-                    if (pallet.CanAddBox(box))
-                        pallet.AddBox(box);
+                    pallet.TryAddBox(box);
                 }
 
                 pallets.Add(pallet);
