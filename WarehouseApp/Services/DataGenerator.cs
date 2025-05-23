@@ -4,7 +4,7 @@ namespace WarehouseApp.Services
 {
     public static class DataGenerator
     {
-        private static Random _random = new();
+        private static readonly Random _random = new();
 
         public static List<Pallet> GeneratePallets(int count)
         {
